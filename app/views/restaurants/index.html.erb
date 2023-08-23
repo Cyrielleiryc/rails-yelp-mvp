@@ -1,5 +1,19 @@
-<ul>
+<ul class="list-group">
   <% @restaurants.each do |restaurant| %>
-    <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+    <li class="list-group-item">
+      <% case restaurant.category %>
+        <% when "chinese" %>
+        <i class="fa-solid fa-bowl-rice"></i>
+        <% when "italian" %>
+        <i class="fa-solid fa-pizza-slice"></i>
+        <% when "japanese" %>
+        <i class="fa-solid fa-user-ninja"></i>
+        <% when "french" %>
+        <i class="fa-solid fa-cheese"></i>
+        <% when "belgian" %>
+        <i class="fa-solid fa-burger"></i>
+      <% end %>
+      <%= link_to restaurant.name, restaurant_path(restaurant) %>
+    </li>
   <% end %>
 </ul>

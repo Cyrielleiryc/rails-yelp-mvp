@@ -1,16 +1,33 @@
 <h2><%= @restaurant.name %></h2>
+<% case @restaurant.category %>
+<% when "chinese" %>
+<i class="fa-solid fa-bowl-rice"></i>
+<% when "italian" %>
+<i class="fa-solid fa-pizza-slice"></i>
+<% when "japanese" %>
+<i class="fa-solid fa-user-ninja"></i>
+<% when "french" %>
+<i class="fa-solid fa-cheese"></i>
+<% when "belgian" %>
+<i class="fa-solid fa-burger"></i>
+<% end %>
 This is a <%= @restaurant.category %> restaurant.
 <br>
-<strong>Address:</strong> <%= @restaurant.address %>
+<i class="fa-solid fa-map-location-dot"></i>   <%= @restaurant.address %>
 <br>
-<strong>Phone number:</strong> <%= @restaurant.phone_number %>
-<br>
+<i class="fa-solid fa-phone"></i>   <%= @restaurant.phone_number %>
+<br><br>
 <strong>Reviews:</strong>
-<%# <%= link_to "Add my review", new_restaurant_review_path(@restaurant) %>
 <ul>
   <% @restaurant.reviews.each do |review| %>
     <li>
-    <%= review.rating %> / 5 -- <%= review.content %>
+    <% review.rating.times do %>
+      <i class="fa-solid fa-star"></i>
+    <% end %>
+    <% (5 - review.rating).times do %>
+      <i class="fa-regular fa-star"></i>
+    <% end %>
+    <%= review.content %>
     </li>
   <% end %>
 </ul>
